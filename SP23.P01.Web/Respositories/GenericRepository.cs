@@ -15,8 +15,6 @@ namespace FA22.P02.Web.Respositories
         private readonly DataContext context;
         private readonly IMapper mapper;
 
-       
-
         public GenericRepository(DataContext context) 
         {
             this.context = context;
