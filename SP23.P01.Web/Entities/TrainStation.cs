@@ -2,7 +2,7 @@
 
 namespace FA22.P02.Web.Entities
 {
-    public class TrainStations : BaseEntity
+    public class TrainStation : BaseEntity
     {
         [MaxLength(120)]
         [StringLength(120)]

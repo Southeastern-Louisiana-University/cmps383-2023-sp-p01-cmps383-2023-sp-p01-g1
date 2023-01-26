@@ -33,5 +33,15 @@ namespace SP23.P01.Web.Controllers
             var station = await repository.GetById(id);
             return Ok(station);
         }
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Update(int id, TrainStationsDto dto) {
+            var update = await repository.Update(id,dto);
+            return Ok(update);
+        }
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id ) {
+            await repository.Delete(id);
+            return Ok();
+        }
     }
 }

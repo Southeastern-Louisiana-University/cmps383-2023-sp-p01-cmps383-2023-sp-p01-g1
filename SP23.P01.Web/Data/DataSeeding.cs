@@ -15,19 +15,19 @@ namespace SP23.P01.Web.Data
 
         public void SeedData()
         {
-            List<TrainStations> trainStations = new()
+            List<TrainStation> trainStations = new()
             {
-                new TrainStations
+                new TrainStation
                 {
                     Name = "Hammond Station",
                     Address = "Hammond"
                 },
-                new TrainStations
+                new TrainStation
                 {
                     Name = "Amite Station",
                     Address = "Amite"
                 },
-                new TrainStations
+                new TrainStation
                 {
                     Name = "New Orleans Station",
                     Address = "New Orleans"

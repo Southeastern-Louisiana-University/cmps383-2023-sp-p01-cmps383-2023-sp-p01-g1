@@ -52,7 +52,7 @@ namespace SP23.P01.Web.Middleware
                 DbUpdateException => "Invalid data!",
                 NotFoundException => exception.Message,
                 InvalidDataException => "Invalid input",
-                _ => "Internal Server Error!"
+                _ => $"Internal Server Error!\n{exception.Message}"
             };
             await context.Response.WriteAsync(new ErrorDetails()
             {

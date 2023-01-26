@@ -11,7 +11,7 @@ namespace FA22.P02.Web.Data
         {
 
         }
-        public DbSet<TrainStations> TrainStations { get; set; }
+        public DbSet<TrainStation> TrainStations { get; set; }
 
     }
 }

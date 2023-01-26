@@ -49,8 +49,10 @@ namespace FA22.P02.Web.Respositories
             {
                 context.Set<TEntity>().Remove(entity);
                 await context.SaveChangesAsync();
+            } else {
+                throw new NotFoundException();
             }
-            return;
+            
         }
 
         public async Task<List<TDto>> GetAll()
@@ -81,14 +83,28 @@ namespace FA22.P02.Web.Respositories
             throw new NotFoundException("Train Station not found!");
         }
 
-        public async Task Update(TDto dto)
+        public async Task<TDto> Update(int id, TDto dto)
         {
-            var original = await context.Set<TEntity>().FindAsync(dto.Id);
+            var original = await context.Set<TEntity>()
+                .AsNoTracking()
+                .FirstOrDefaultAsync(e => e.Id == id);
             if (original != null)
             {
+                
                 var entity = mapper.Map<TEntity>(dto);
-                var valuesMap = mapper.Map(original, entity);
-                context.Set<TEntity>().Update(valuesMap);
+                var valuesMap = mapper.Map(entity, original);
+                var ensureEntity = mapper.Map<TEntity>(valuesMap);
+                ensureEntity.Id = id;
+                context.Set<TEntity>().Update(ensureEntity);
+
+                await context.SaveChangesAsync();
+                var updated = await context.Set<TEntity>().FindAsync(id);
+                var returnDto = mapper.Map<TDto>(updated);
+                returnDto.Id = id; 
+                return returnDto;
+                
+            } else {
+                throw new NotFoundException("Train Station not found!");
             }
         }
     }
